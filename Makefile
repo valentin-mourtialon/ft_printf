@@ -1,29 +1,31 @@
-SRCS	=	ft_printf.c
+SRCS		=	ft_printf.c
 
-OBJS	=	${SRCS:.c=.o}
+OBJS		=	${SRCS:.c=.o}
 
-NAME	=	libftprintf.a
+LIBFT_PATH	=	./libft
 
-CC		=	gcc
+NAME		=	libftprintf.a
 
-FLAGS	=	-Wall -Werror -Wextra
+CC			=	gcc
 
-RM		=	rm -f
+FLAGS		=	-Wall -Werror -Wextra
+
+RM			=	rm -f
 
 .c.o:
-			${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+				${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
-all:		${NAME}
+all:			${NAME}
 
-${NAME}:	${OBJS}
-			ar rc ${NAME} ${OBJS}
+${NAME}:		${OBJS}
+				ar rc ${NAME} ${OBJS}
 
 clean:
-			${RM} ${OBJS}
+				${RM} ${OBJS}
 
-fclean:		clean
-			${RM} ${NAME}
+fclean:			clean
+				${RM} ${NAME}
 
-re:			fclean all
+re:				fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:			all clean fclean re
