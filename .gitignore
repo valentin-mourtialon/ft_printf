@@ -1,0 +1,6 @@
+/libft
+*.out
+*.o
+*.a
+*.gch
+*.swp
