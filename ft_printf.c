@@ -6,7 +6,7 @@
 /*   By: vmourtia <vmourtia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:02:37 by vmourtia          #+#    #+#             */
-/*   Updated: 2022/05/12 14:23:00 by vmourtia         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:35:13 by vmourtia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,33 @@ static char	*gen_hexabase(int lower_mode)
 	return (base_hexa);
 }
 
+static void	putnbr_dec_to_hexa(int lower_mode, va_list args)
+{
+	char	*base;
+
+	base = gen_hexabase(lower_mode);
+	putnbr_hex(base, va_arg(args, int));
+	free(base);
+}
+
+static void	check_options(char c, va_list args)
+{
+	if (c == 'c')
+		ft_putchar_fd(va_arg(args, int), 1);
+	else if (c == 's')
+		ft_putstr_fd(va_arg(args, char *), 1);
+	else if (c == 'i' || c == 'd')
+		ft_putnbr_fd(va_arg(args, int), 1);
+	else if (c == 'u')
+		put_unbr(va_arg(args, unsigned int));
+	else if (c == 'x')
+		putnbr_dec_to_hexa(1, args);
+	else if (c == 'X')
+		putnbr_dec_to_hexa(0, args);
+	else if (c == '%')
+		ft_putchar_fd(c, 1);
+}
+
 int	ft_printf(const char *s, ...)
 {
 	va_list	args;
@@ -81,21 +108,7 @@ int	ft_printf(const char *s, ...)
 	while (s[i])
 	{
 		if (s[i] == '%')
-		{
-			i++;
-			if (s[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
-			else if (s[i] == 's')
-				ft_putstr_fd(va_arg(args, char *), 1);
-			else if (s[i] == 'i' || s[i] == 'd')
-				ft_putnbr_fd(va_arg(args, int), 1);
-			else if (s[i] == 'u')
-				put_unbr(va_arg(args, unsigned int));
-			else if (s[i] == 'x')
-				putnbr_hex(gen_hexabase(1), va_arg(args, int));
-			else if (s[i] == 'X')
-				putnbr_hex(gen_hexabase(0), va_arg(args, int));
-		}
+			check_options(s[++i], args);
 		else
 			ft_putchar_fd(s[i], 1);
 		i++;
@@ -109,7 +122,7 @@ int main(void)
 {
 	int		len;
 	
-    len = ft_printf("(c) Character to display : %c.\n(s) String to display : %s.\n(d) Decimal to display : %d.\n(i) Int to display : %i.\n(u) Unsigned decimal to display : %u.\n(x) Hexadecimal lowercase to display : %x.\n(X) Hexadecimal uppercase to display : %X.\n", 'A', "AH!", INT_MIN, INT_MAX, UINT_MAX, INT_MIN, INT_MAX);
+    len = ft_printf("(c) Character to display : %c.\n(s) String to display : %s.\n(d) Decimal to display : %d.\n(i) Int to display : %i.\n(u) Unsigned decimal to display : %u.\n(x) Hexadecimal lowercase to display : %x.\n(X) Hexadecimal uppercase to display : %X.\n(%%) .\n", 'A', "AH!", INT_MIN, INT_MAX, UINT_MAX, INT_MIN, INT_MAX);
 	ft_printf("\nString length : %i.\n", len);
 	return (0);
 }*/
