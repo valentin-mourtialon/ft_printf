@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmourtia <vmourtia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 09:50:41 by vmourtia          #+#    #+#             */
-/*   Updated: 2022/06/07 15:14:25 by vmourtia         ###   ########.fr       */
+/*   Created: 2022/06/07 15:12:01 by vmourtia          #+#    #+#             */
+/*   Updated: 2022/06/07 15:15:06 by vmourtia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdlib.h>
-# include <limits.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
 
-size_t	ft_strlen(const char *s);
-void	ft_putchar_fd(char c, int fd, size_t *output_length);
-void	ft_putstr_fd(char *s, int fd, size_t *output_length);
-int ft_printf(const char *s, ...);
+	len = 0;
+	while (*s++)
+		len++;
+	return (len);
+}
 
-#endif
+void	ft_putchar_fd(char c, int fd, size_t *output_length)
+{
+	write(fd, &c, 1);
+	(*output_length)++;
+}
+
+void	ft_putstr_fd(char *s, int fd, size_t *output_length)
+{
+	if (s)
+	{
+		write(fd, s, ft_strlen(s));
+		*output_length = *output_length + ft_strlen(s);
+	}
+}
