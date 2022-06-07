@@ -6,7 +6,7 @@
 /*   By: vmourtia <vmourtia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 09:50:41 by vmourtia          #+#    #+#             */
-/*   Updated: 2022/06/07 15:14:25 by vmourtia         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:33:47 by vmourtia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@
 size_t	ft_strlen(const char *s);
 void	ft_putchar_fd(char c, int fd, size_t *output_length);
 void	ft_putstr_fd(char *s, int fd, size_t *output_length);
-int ft_printf(const char *s, ...);
+int		ft_printf(const char *s, ...);
 
 #endif
