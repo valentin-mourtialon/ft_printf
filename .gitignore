@@ -1,6 +1,9 @@
+/printfTester
 /libft
 *.out
 *.o
 *.a
 *.gch
 *.swp
+notes.txt
+tests.c
