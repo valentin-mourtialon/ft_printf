@@ -6,7 +6,7 @@
 /*   By: vmourtia <vmourtia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:12:01 by vmourtia          #+#    #+#             */
-/*   Updated: 2022/06/07 15:15:06 by vmourtia         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:48:46 by vmourtia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,10 @@ void	ft_putstr_fd(char *s, int fd, size_t *output_length)
 	{
 		write(fd, s, ft_strlen(s));
 		*output_length = *output_length + ft_strlen(s);
+	}
+	else
+	{
+		write(fd, "(null)", 6);
+		*output_length = *output_length + 6;
 	}
 }

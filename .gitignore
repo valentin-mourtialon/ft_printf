@@ -1,4 +1,5 @@
 /printfTester
+/ft_printf_tester
 /libft
 *.out
 *.o
